@@ -135,6 +135,7 @@
   },
   "defaultProject": "rbf-app",
   "cli": {
-    "defaultCollection": "@ngrx/schematics"
+    "defaultCollection": "@ngrx/schematics",
+    "analytics": "7be2f680-7638-48ff-9173-bc14561fd431"
   }
 }
