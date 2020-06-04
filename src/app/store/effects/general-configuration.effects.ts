@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
-import { UUID } from '@iapps/utils';
+import { UID } from '../../shared/helpers/generate-uid';
 import { of } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import {
@@ -155,8 +155,8 @@ export class GeneralConfigurationEffects {
       errorRate: 10,
       lastUpdate: date,
       periodType: 'Quarterly',
-      verification: UUID(),
-      assessment: UUID(),
+      verification: UID(),
+      assessment: UID(),
       categoryCombo: {
         id: 'bjDvmb4bfuf'
       },

@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-body" style="padding: 5px">
+  <div class="card-body" style="padding: 5px;">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -10,19 +10,38 @@
       <tbody>
         <tr>
           <td>Period Type</td>
-          <td>{{ (generalConfiguration$ | async).periodType }}</td>
+          <td>
+            {{
+              (generalConfiguration$ | async)
+                ? (generalConfiguration$ | async).periodType
+                : ''
+            }}
+          </td>
         </tr>
         <tr>
           <td>Organisation Unit level</td>
           <td>
             {{
-              (generalConfiguration$ | async).organisationUnitLevel.displayName
+              (
+                (generalConfiguration$ | async)
+                  ? (generalConfiguration$ | async).organisationUnitLevel
+                  : ''
+              )
+                ? (generalConfiguration$ | async).organisationUnitLevel
+                    .displayName
+                : ''
             }}
           </td>
         </tr>
         <tr>
           <td>Error Rate</td>
-          <td>{{ (generalConfiguration$ | async).errorRate }}</td>
+          <td>
+            {{
+              (generalConfiguration$ | async)
+                ? (generalConfiguration$ | async).errorRate
+                : ''
+            }}
+          </td>
         </tr>
       </tbody>
     </table>
