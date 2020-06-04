@@ -1,4 +1,4 @@
-export function generateUid() {
+export function UID() {
 	let uidGenerated = '';
 	const characters =
 	  '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
