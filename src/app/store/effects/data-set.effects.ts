@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as _ from 'lodash';
-import { UUID } from '@iapps/utils';
 import { DataSetService } from 'src/app/shared/services/data-set.service';
 import {
   getAssessmentDataSet,
@@ -26,6 +25,7 @@ import {
 import { CategoryComboService } from 'src/app/shared/services/category-combo.service';
 import { DataElement } from '@iapps/ngx-dhis2-data-filter';
 import { DataSet, DataSets } from 'src/app/shared/models/data-set.model';
+import {UID} from '../../shared/helpers/generate-uid'
 
 @Injectable()
 export class DataSetEffects {
@@ -136,7 +136,7 @@ export class DataSetEffects {
     return _.map(dataElements, (dataELement: DataElement) =>
       _.assign(
         {},
-        { dataSet: { id: dataSetId }, id: UUID(), dataElement: dataELement }
+        { dataSet: { id: dataSetId }, id: UID(), dataElement: dataELement }
       )
     );
   }
