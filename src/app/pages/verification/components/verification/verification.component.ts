@@ -123,7 +123,7 @@ export class VerificationComponent implements OnInit, OnDestroy {
   addPeriodTypeConfig() {
     this.selectionFilterConfig = {
       ...this.selectionFilterConfig,
-      selectedPeriodType: this.selectedPeriodType,
+      // selectedPeriodType: this.selectedPeriodType,
     };
   }
   onFilterUpdateAction(dataSelections) {
