@@ -51,12 +51,16 @@ export class EditAssessmentComponent implements OnInit {
         Validators.required
       ),
       possibleMaxValue: new FormControl(
-        this.selectedAssessmentConfig.possibleMaxValue
+        (
+          this.selectedAssessmentConfig
+            ? this.selectedAssessmentConfig.possibleMaxValue
+            : 0
+        )
           ? this.selectedAssessmentConfig.possibleMaxValue
           : 0,
         Validators.required
       ),
-    });
+    });   
   }
 
   onClickDone() {
