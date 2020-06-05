@@ -8,7 +8,7 @@ import { State } from 'src/app/store/reducers';
 import { getAllDataElements } from 'src/app/store/selectors';
 
 @Pipe({
-  name: 'dataElement'
+  name: 'dataElement',
 })
 export class DataElementPipe implements PipeTransform {
   dataElements: Observable<DataElementList[]>;
@@ -18,11 +18,11 @@ export class DataElementPipe implements PipeTransform {
   dataElementList = [];
 
   transform(value?: string): any {
-    this.dataElements.subscribe(data => (this.dataElementList = data));
+    this.dataElements.subscribe((data) => (this.dataElementList = data));
     const dataElement: DataElementList = _.find(
       this.dataElementList,
       (data: DataElementList) => data.id === value
     );
-    return dataElement.name;
+    return dataElement ? dataElement.name : '';
   }
 }
