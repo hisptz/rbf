@@ -38,10 +38,14 @@ export class EditAssessmentComponent implements OnInit {
     this.currentUser$ = this.store.select(getCurrentUser);
     this.store
       .select(getSelectedAssessmentConfig(this.route.snapshot.params['id']))
-      .subscribe(config => (this.selectedAssessmentConfig = config));
+      .subscribe((config) => (this.selectedAssessmentConfig = config));
     this.assessmentForm = new FormGroup({
       indicator: new FormControl(
-        this.selectedAssessmentConfig.indicator
+        (
+          this.selectedAssessmentConfig
+            ? this.selectedAssessmentConfig.indicator
+            : ''
+        )
           ? this.selectedAssessmentConfig.indicator
           : '',
         Validators.required
@@ -57,7 +61,7 @@ export class EditAssessmentComponent implements OnInit {
 
   onClickDone() {
     let userObject: User = null;
-    this.currentUser$.subscribe(user => {
+    this.currentUser$.subscribe((user) => {
       userObject = user;
     });
     const date = new Date();
