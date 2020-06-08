@@ -89,7 +89,7 @@ export class AssessmentComponent implements OnInit {
   addPeriodTypeConfig() {
     this.selectionFilterConfig = {
       ...this.selectionFilterConfig,
-      selectedPeriodType: this.selectedPeriodType,
+      // selectedPeriodType: this.selectedPeriodType,
     };
   }
 
