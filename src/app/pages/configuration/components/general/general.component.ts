@@ -16,7 +16,7 @@ import { getGeneralConfiguration } from 'src/app/store/selectors/general-configu
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
-  styleUrls: ['./general.component.css']
+  styleUrls: ['./general.component.css'],
 })
 export class GeneralComponent implements OnInit, OnDestroy {
   perodTypeSubscription: Subscription;
@@ -46,9 +46,9 @@ export class GeneralComponent implements OnInit, OnDestroy {
     this.generateForm();
     this.perodTypeSubscription = this.periodType
       .getPeriodTypes()
-      .subscribe(arg => (this.periodTypes = arg.periodTypes));
+      .subscribe((arg) => (this.periodTypes = arg.periodTypes));
     this.orgunitLevelSubscription = this.OrgUnitFetcher.getOrgUnitsLevel().subscribe(
-      arg => (this.OrgUnitLevels = arg.organisationUnitLevels)
+      (arg) => (this.OrgUnitLevels = arg.organisationUnitLevels)
     );
   }
   ngOnDestroy() {
@@ -59,22 +59,26 @@ export class GeneralComponent implements OnInit, OnDestroy {
 
   generateForm() {
     this.generalConfigSubscription = this.generalConfigurations$.subscribe(
-      config => (this.generalConfiguration = config)
+      (config) => (this.generalConfiguration = config)
     );
     this.generalConfigForm = new FormGroup({
-      periodType: new FormControl(this.generalConfiguration.periodType),
+      periodType: new FormControl(
+        this.generalConfiguration ? this.generalConfiguration.periodType : ''
+      ),
       OrgUnitLevel: new FormControl(),
-      errorRate: new FormControl(this.generalConfiguration.errorRate)
+      errorRate: new FormControl(
+        this.generalConfiguration ? this.generalConfiguration.errorRate : ''
+      ),
     });
   }
 
   onClickSave(formData) {
     const level = _.find(
       this.OrgUnitLevels,
-      orgunit => orgunit.id === formData.OrgUnitLevel
+      (orgunit) => orgunit.id === formData.OrgUnitLevel
     );
     let userObject: User = null;
-    this.currentUser$.subscribe(user => {
+    this.currentUser$.subscribe((user) => {
       userObject = user;
     });
     const date = new Date();
@@ -84,7 +88,7 @@ export class GeneralComponent implements OnInit, OnDestroy {
       organisationUnitLevel: level,
       errorRate: formData.errorRate,
       periodType: formData.periodType,
-      user: { id: userObject.id, name: userObject.displayName }
+      user: { id: userObject.id, name: userObject.displayName },
     };
     this.store.dispatch(
       updateGeneralConfigurations({ configuration: generalConfig })
