@@ -97,11 +97,11 @@ export class VerificationComponent implements OnInit, OnDestroy {
     this.errorRate$ = this.store.select(getGeneralConfigurationErrorRate);
     this.orgUnitLevel$ = this.store.select(getGeneralConfigurationOrunitLevel);
     this.errorRateSubscription = this.errorRate$.subscribe(
-      errorRate => (this.errorRate = errorRate),
+      (errorRate) => (this.errorRate = errorRate),
       () => (this.errorRate = null)
     );
     this.orgUnitLevelSubscription = this.orgUnitLevel$.subscribe(
-      orgUnitLevel => (this.orgUnitLevel = orgUnitLevel)
+      (orgUnitLevel) => (this.orgUnitLevel = orgUnitLevel)
     );
     this.store
       .select(getGeneralConfigurationPeriodType)
@@ -131,11 +131,11 @@ export class VerificationComponent implements OnInit, OnDestroy {
       this.dataSelections = dataSelections;
       const orgunigData = _.find(
         dataSelections,
-        dataSelection => dataSelection.dimension === 'ou'
+        (dataSelection) => dataSelection.dimension === 'ou'
       );
       const periodData = _.find(
         dataSelections,
-        dataSelection => dataSelection.dimension === 'pe'
+        (dataSelection) => dataSelection.dimension === 'pe'
       );
       const selectedData = {
         organisationUnit: orgunigData.items[0].id,
@@ -145,14 +145,22 @@ export class VerificationComponent implements OnInit, OnDestroy {
       this.store.select(getVerificationFormStructure).subscribe();
       this.tableStructure$ = this.store.select(getVerificationFormStructure);
       this.tableStructureSubscription = this.tableStructure$.subscribe(
-        tableData => {
+        (tableData) => {
           this.verificationData = tableData;
         }
       );
       this.periodSelection$ = this.store.select(getSelectionFilterPeriod);
       this.setShowForm();
-      this.rep = setRepString(this.verificationData[0].monthlyValues.length);
-      this.ver = setVerString(this.verificationData[0].monthlyValues.length);
+      this.rep = setRepString(
+        (this.verificationData[0] ? this.verificationData[0].monthlyValues : '')
+          ? this.verificationData[0].monthlyValues.length
+          : ''
+      );
+      this.ver = setVerString(
+        (this.verificationData[0] ? this.verificationData[0].monthlyValues : '')
+          ? this.verificationData[0].monthlyValues.length
+          : ''
+      );
     }
   }
 
