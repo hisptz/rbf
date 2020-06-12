@@ -1,6 +1,6 @@
 {
-  "name": "rbf-app",
-  "short_name": "rbf-app",
+  "name": "RBF",
+  "short_name": "RBF",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
@@ -11,6 +11,11 @@
       "src": "assets/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
+    },
+    {
+      "src": "assets/icons/balls-3.svg",
+      "sizes": "72x72",
+      "type": "image/svg"
     },
     {
       "src": "assets/icons/icon-96x96.png",
@@ -49,3 +54,4 @@
     }
   ]
 }
+
