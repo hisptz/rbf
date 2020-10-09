@@ -65,7 +65,7 @@ export class AssessmentComponent implements OnInit {
   isFormComplete = [];
   isApplicable = [];
 
-  // TODO take care of memory leaks
+  // TODO! take care of memory leaks
   constructor(private store: Store<State>) {}
 
   ngOnInit() {
