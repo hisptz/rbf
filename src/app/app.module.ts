@@ -26,7 +26,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxDhis2MenuModule } from '@iapps/ngx-dhis2-menu';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material';
+import { MatIconModule, MatSnackBarModule } from '@angular/material';
 import { NgxDhis2HttpClientModule } from '@iapps/ngx-dhis2-http-client';
 
 // AoT requires an exported function for factories
@@ -39,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    MatIconModule,
     RoutingModule,
     ReactiveFormsModule,
     MatSnackBarModule,
