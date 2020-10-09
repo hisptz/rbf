@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-body" style="padding: 5px;">
+  <div class="card-body" style="padding: 5px">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -48,8 +48,13 @@
 
     <div class="row">
       <div class="form-group col col-12">
-        <button class="btn btn-primary" (click)="onUpdateConfigurations()">
-          Update
+        <button
+          class="mt-4 btn btn-primary"
+          mat-flat-button
+          (click)="onUpdateConfigurations()"
+        >
+          <mat-icon>edit</mat-icon>
+          <span>Edit </span>
         </button>
       </div>
     </div>
