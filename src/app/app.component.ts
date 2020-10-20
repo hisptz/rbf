@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  showList: boolean
   constructor(
     private translate: TranslateService,
     private titleService: Title
@@ -24,5 +25,8 @@ export class AppComponent {
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
+  }
+  linksPage(){
+this.showList = !this.showList
   }
 }

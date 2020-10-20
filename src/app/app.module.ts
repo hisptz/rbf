@@ -14,7 +14,7 @@ import { effects } from './store/effects';
 
 import {
   RouterStateSerializer,
-  StoreRouterConnectingModule
+  StoreRouterConnectingModule,
 } from '@ngrx/router-store';
 import { RouteSerializer, CoreModule } from './core';
 import { RoutingModule } from './app.routes';
@@ -47,8 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       namespace: 'iapps',
       version: 1,
       models: {
-        users: 'id'
-      }
+        users: 'id',
+      },
     }),
     BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -62,11 +62,14 @@ export function HttpLoaderFactory(http: HttpClient) {
      * DHIS2 Http Module
      */
     NgxDhis2HttpClientModule.forRoot({
-      namespace: 'iapps',
       version: 1,
-      models: {}
+      namespace: 'rbf',
+      models: {
+        organisationUnits: 'id,level',
+        organisationUnitLevels: 'id,level',
+        organisationUnitGroups: 'id',
+      },
     }),
-
     /**
      * Translation module
      */
@@ -74,8 +77,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
 
     /**ons, state => ({
@@ -87,10 +90,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     !environment.production ? StoreDevtoolsModule.instrument() : [],
 
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
-    })
+      enabled: environment.production,
+    }),
   ],
   providers: [{ provide: RouterStateSerializer, useClass: RouteSerializer }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
